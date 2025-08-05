@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { ZodError } from "zod"
 
 export function errorHandler(err, req, res, next) {
   console.error("Error", err)

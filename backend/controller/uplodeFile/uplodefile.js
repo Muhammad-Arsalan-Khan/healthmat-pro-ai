@@ -1,4 +1,4 @@
-import fileUploader from "../services/cloudinary/cloudinary.js"
+import fileUploader from "../../services/fileUplode/fileUplode.js"
 
 export async function uplodefile(req, res, next) {
   try {

@@ -1,6 +1,9 @@
+import { verifyUser } from "../../utils/jwt.js"
+import User from "../models/userSchema.js" 
+
 async function authCheckAdmin(req, res, next) {
   try {
-    const token = req.cookies?.token
+    const token = req.headers.authorization.split(" ")[1]
     if (!token) {
       return res.status(401).json({ message: "unauthorized access" })
     }

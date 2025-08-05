@@ -1,17 +1,27 @@
-import User from "../models/userSchema.js"
-import { userValidationSchema, userValidationSchemalogin } from "../services/validation/userValidation.js"
+import User from "../../models/userSchema.js" 
+import { userValidationSchema, userValidationSchemalogin } from "../../services/validation/userValidation.js"
 import bcrypt from "bcryptjs"
-import { setUser, setAdmin } from "../utils/jwt.js"
-import { verifyEmail } from "../services/nodemailer/nodemailer.js"
-import EmailOTP from "../models/EmailOTPSchema.js"
+import { setUser, setAdmin } from "../../utils/jwt.js"
+import { verifyEmail } from "../../services/nodemailer/nodemailer.js"
+import EmailOTP from "../../models/EmailOTPSchema.js"
 
 let otpGenrate = Math.floor(100000 + Math.random() * 900000)
 
 async function login(req, res, next) {
   try {
     const { email, password } = req.body
+    if(!email || !password){
+       const err = new Error("field are required")
+       err.statusCode = 400
+       throw err
+    }
     const data = { email,  password}
     const validatedData = userValidationSchemalogin.parse(data)
+    if (!validatedData) {
+       const err = new Error("enter valid input")
+       err.statusCode = 400
+       throw err
+    }
     const existingUser = await User.findOne({ email })
     if (!existingUser) {
        const err = new Error("account does not exists")
@@ -39,15 +49,16 @@ async function login(req, res, next) {
     }
     const id = userData.id
     const token = setUser(id)
-    res.cookie("token", token)
+    let Verified;
     if (existingUser.isAdmin) {
       const isVerified = existingUser.isVerified
-      const Verified = setAdmin(isVerified)
-      res.cookie("isVerified", Verified)
+      Verified = setAdmin(isVerified)
     }
     res.status(200).json({
       message: "login successful",
       user: userData,
+      token,
+      Verified
     })
   } catch (err) {
     next(err)
@@ -57,13 +68,23 @@ async function login(req, res, next) {
 async function signup(req, res, next) {
   try {
     const { name, email, password} = req.body
+    if(!name || !email || !password){
+      const err = new Error("field are required")
+      err.statusCode = 400
+      throw err
+    }
     const data = { name, email,  password}
     const validatedData = userValidationSchema.parse(data)
+    if(!validatedData){
+      const err = new Error("enter the valid input")
+      err.statusCode = 400
+      throw err
+    }
     const existingUser = await User.findOne({ email })
     if (existingUser) {
       const err = new Error("Account already exists")
       err.statusCode = 400;
-      throw err;
+      throw err
     }
     const hashedPassword = await bcrypt.hash(password, 10)
     const newUser = new User({ ...validatedData, password: hashedPassword })
@@ -75,11 +96,10 @@ async function signup(req, res, next) {
   }
 }
 
-
 async function verifyEmailOTP(req, res, next)  {
   try {
     const id = req.params.id
-    const { email, otp } = req.body;
+    const { email, otp } = req.body
 
     const otpDoc = await EmailOTP.findOne({ email, otp });
 
@@ -115,6 +135,7 @@ async function verifyEmailOTP(req, res, next)  {
        err.statusCode = 400
        throw err
     }
+    await EmailOTP.deleteMany({ email })
     return res.status(200).json({ message: "OTP verified successfully" })
 
   } catch (err) {
