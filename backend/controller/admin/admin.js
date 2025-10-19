@@ -1,4 +1,4 @@
-import User from "../models/loanSchema.js" //yaha schema aye ga
+import User from "../../models/userSchema.js" //yaha schema aye ga
 
 const getDataByAdmin = async (req, res) => {
   try {

@@ -47,8 +47,10 @@ const LoginPage = () => {
     try {
       setLoading(true)
       const res = await axios.post(`${config.baseURL}/login`, data)
+      console.log(res)
       const userData = res.data.user
       localStorage.setItem("user", JSON.stringify(userData))
+      console.log(userData.isVerified)
       if (userData.isVerified) {
         setSnackbar({
           open: true,
@@ -65,13 +67,14 @@ const LoginPage = () => {
           setTimeout(() => {
             Cookies.set("token", res.data.token)
             navigate(`/dashboard/${userData.id}`)
-          }, 1500);
+          }, 1000);
         }
         setLoading(false);
       }
     } catch (err) {
       setLoading(false)
       if (err.response?.data?.message == "unAuthorized user") {
+        console.log(err)
         const email = err.response?.data?.email
         localStorage.setItem("user_email", email)
         setUserId(err.response?.data?.data)
@@ -101,7 +104,7 @@ const LoginPage = () => {
         mt: { xs: 3, sm: 5 },
       }}
       >
-      <Typography variant="h5" color="primary" gutterBottom>
+      <Typography variant="h5" color="#4CAF50" gutterBottom>
         Login
       </Typography>
 
@@ -132,9 +135,8 @@ const LoginPage = () => {
         <Button
           type="submit"
           variant="contained"
-          color="primary"
           fullWidth
-          sx={{ mt: 2 }}
+          sx={{ mt: 2,bgcolor: "#4CAF50", color: "white", "&:hover": { backgroundColor: "#4ccd51ff" }, }}
           disabled={loading}
         >
           Login
@@ -142,7 +144,7 @@ const LoginPage = () => {
         <Box sx={{ marginTop: 2 }}>
           <Typography variant="body2" color="textSecondary" align="center">
             Don't have an account?{" "}
-            <Link href="/signup" underline="hover" color="primary">
+            <Link href="/signup" underline="hover" color="#4CAF50">
               Signup
             </Link>
           </Typography>

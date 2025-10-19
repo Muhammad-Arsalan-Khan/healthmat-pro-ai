@@ -2,6 +2,7 @@ import Navbar from "../components/navbar"
 import Content from "../components/Content"
 import Footer from "../components/footer"
 
+
 function LandingPage() {
   return (
     <>

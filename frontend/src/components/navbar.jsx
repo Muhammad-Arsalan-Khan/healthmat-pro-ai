@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
 import Cookies from 'js-cookie'
 import { useState } from 'react'
+// import logo from "../assets/logo.PNG"
+
 
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -66,8 +68,8 @@ const Navbar = () => {
           }}
         >
           <Typography variant="h5" fontWeight={700} marginLeft={3.6} color="#8BC441" sx={{ display: "flex", alignItems: "center" }}>
-            {/* <img src={logo} alt="Logo" style={{ height: 60, marginRight: 16 }} /> */}
-            logo
+            {/* <img src={logo} alt="Logo" style={{ height: 70, marginRight: 16 }} /> */}
+            HealthMat Pro
           </Typography>
 
           <Box sx={{ display: { xs: "block", sm: "none" } }}>
@@ -83,7 +85,7 @@ const Navbar = () => {
                   color="inherit"
                   component={Link}
                   to="/"
-                  sx={{ marginRight: "17px", color: "gray", "&:hover": { color: "#8BC441" } }}
+                  sx={{ marginRight: "17px", color: "gray", "&:hover": { color: "#4CAF50" } }}
                 >
                   Home
                 </Button>
@@ -91,7 +93,7 @@ const Navbar = () => {
                   color="inherit"
                   component={Link}
                   to={admin ? `/admin/dashboard/${userData.id}` : `/dashboard/${userData.id}`}
-                  sx={{ marginRight: "19px", color: "gray", "&:hover": { color: "#8BC441" } }}
+                  sx={{ marginRight: "19px", color: "gray", "&:hover": { color: "#4CAF50" } }}
                 >
                   Dashboard
                 </Button>
@@ -101,9 +103,9 @@ const Navbar = () => {
                   component={Link}
                   to="/"
                   sx={{
-                    backgroundColor: "#005EB8",
+                    backgroundColor: "#4CAF50",
                     color: "#fff",
-                    "&:hover": { backgroundColor: "#1976d2" },
+                    "&:hover": { backgroundColor: "#4ccd51ff" },
                   }}
                 >
                   Logout
@@ -116,10 +118,8 @@ const Navbar = () => {
                   component={Link}
                   to="/signup"
                   sx={{
-                    backgroundColor: "#005EB8",
-                    color: "#fff",
                     marginRight: "18px",
-                    "&:hover": { backgroundColor: "#1976d2" },
+                    bgcolor: "#4CAF50", color: "white", "&:hover": { backgroundColor: "#4ccd51ff" },
                   }}
                 >
                   Signup
@@ -129,9 +129,7 @@ const Navbar = () => {
                   component={Link}
                   to="/login"
                   sx={{
-                    backgroundColor: "#005EB8",
-                    color: "#fff",
-                    "&:hover": { backgroundColor: "#1976d2" },
+                   bgcolor: "#4CAF50", color: "white", "&:hover": { backgroundColor: "#4ccd51ff" },
                   }}
                 >
                   Login

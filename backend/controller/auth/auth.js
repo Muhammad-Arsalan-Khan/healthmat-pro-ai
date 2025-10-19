@@ -16,12 +16,12 @@ async function login(req, res, next) {
        throw err
     }
     const data = { email,  password}
-    const validatedData = userValidationSchemalogin.parse(data)
-    if (!validatedData) {
-       const err = new Error("enter valid input")
-       err.statusCode = 400
-       throw err
-    }
+    // const validatedData = userValidationSchemalogin.parse(data)
+    // if (!validatedData) {
+    //    const err = new Error("enter valid input")
+    //    err.statusCode = 400
+    //    throw err
+    // }
     const existingUser = await User.findOne({ email })
     if (!existingUser) {
        const err = new Error("account does not exists")
@@ -46,6 +46,7 @@ async function login(req, res, next) {
       username: existingUser.name,
       email: existingUser.email,
       id: existingUser._id,
+      isVerified: true,
     }
     const id = userData.id
     const token = setUser(id)
@@ -101,7 +102,7 @@ async function verifyEmailOTP(req, res, next)  {
     const id = req.params.id
     const { email, otp } = req.body
 
-    const otpDoc = await EmailOTP.findOne({ email, otp });
+    const otpDoc = await EmailOTP.findOne({ email, otp  });
 
     if (!otpDoc) {
        const err = new Error("invalid OTP or email")
@@ -135,7 +136,7 @@ async function verifyEmailOTP(req, res, next)  {
        err.statusCode = 400
        throw err
     }
-    await EmailOTP.deleteMany({ email })
+    // await EmailOTP.deleteMany({ email })
     return res.status(200).json({ message: "OTP verified successfully" })
 
   } catch (err) {

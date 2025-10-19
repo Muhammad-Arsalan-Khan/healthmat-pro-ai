@@ -85,7 +85,7 @@ const SignupForm = () => {
         mt: { xs: 3, sm: 5 },
       }}
       >
-      <Typography variant="h5" color="primary" gutterBottom>
+      <Typography variant="h5" color="#4CAF50" gutterBottom>
         Sign Up
       </Typography>
       <Box
@@ -120,7 +120,7 @@ const SignupForm = () => {
           variant="contained"
           color="primary"
           fullWidth
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, bgcolor: "#4CAF50", color: "white", "&:hover": { backgroundColor: "#4ccd51ff" }, }}
           disabled={loading}
         >
           Sign Up
@@ -128,7 +128,7 @@ const SignupForm = () => {
          <Box sx={{ marginTop: 2 }}>
             <Typography variant="body2" color="textSecondary" align="center">
               I have Already Account{" "}
-              <Link href="/login" underline="hover" color="primary">
+              <Link href="/login" underline="hover" color="#4CAF50">
                 Login
               </Link>
             </Typography>

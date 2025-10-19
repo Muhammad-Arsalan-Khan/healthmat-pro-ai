@@ -17,7 +17,7 @@ function Home() {
 
         <Route index element={<LandingPage />} />
   
-         <Route element={<PrivateRoutes />}>
+        <Route element={<PrivateRoutes />}>
           <Route path="/dashboard/:id" element={<Dashboard />} />
         </Route>
 

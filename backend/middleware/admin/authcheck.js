@@ -1,5 +1,5 @@
 import { verifyUser } from "../../utils/jwt.js"
-import User from "../models/userSchema.js" 
+import User from "../../models/userSchema.js" 
 
 async function authCheckAdmin(req, res, next) {
   try {
