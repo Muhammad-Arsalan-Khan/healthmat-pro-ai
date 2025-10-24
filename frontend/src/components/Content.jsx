@@ -117,7 +117,7 @@ function Content() {
         </Typography>
       </Box>
     </Box>
-  );
+  )
     </>
   )
 }

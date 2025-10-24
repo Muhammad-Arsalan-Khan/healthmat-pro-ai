@@ -47,10 +47,10 @@ const LoginPage = () => {
     try {
       setLoading(true)
       const res = await axios.post(`${config.baseURL}/login`, data)
-      console.log(res)
+      // console.log(res)
       const userData = res.data.user
       localStorage.setItem("user", JSON.stringify(userData))
-      console.log(userData.isVerified)
+      // console.log(userData.isVerified)
       if (userData.isVerified) {
         setSnackbar({
           open: true,

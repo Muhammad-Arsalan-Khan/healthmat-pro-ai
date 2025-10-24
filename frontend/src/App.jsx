@@ -1,22 +1,29 @@
 import Home from "./pages/Home";
-import { ToastContainer } from "react-toastify"
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#22c55e',
+    },
+    background: {
+      default: '#0a1525',
+      paper: '#0d1b2a',
+    },
+  },
+  typography: {
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  },
+});
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Home />
-      <ToastContainer
-        position="top-left"
-        autoClose={5000} 
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick={true}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        pauseOnHover={true}
-      />
-    </>
+    </ThemeProvider>
   );
 }
 
-export default App
+export default App;
