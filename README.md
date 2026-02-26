@@ -21,6 +21,16 @@ When the doctor says, *“Pichlay reports laao,”* we start scrolling through W
 
 ---
 
+## ✨ Features
+
+- 🤖 **AI-Powered Analysis** - Google Gemini 1.5 Flash integration
+- 📄 **Multi-Format Support** - PDF, JPG, PNG, WEBP
+- 🌐 **Bilingual** - English + Roman Urdu responses
+- 💬 **Chat Interface** - Interactive conversation with AI
+- 🔒 **Secure** - JWT authentication & encrypted data
+- 📱 **Responsive Design** - Works on all devices
+- ⚡ **Real-time Processing** - Instant report analysis
+
 ## 💡 The Big Idea
 
 > “Yeh sirf ek project nahi — ek real-life problem ka digital solution hai.”
@@ -122,16 +132,13 @@ Always ends with a safety note: Consult your doctor before acting.
 
 Frontend: netlify
 
-Backend: vercel
+Backend: localhost
 
 Database: MongoDB Atlas
 
 🏆 Credits
 
 Team: HealthMate (Sehat Files Hackathon 2025)
-Mentor: [Hackathon Mentor Name if any]
-Frontend & UI: Muhammad Arsalan
-Backend & AI Integration: [Teammate Names if applicable]
 
 💬 Final Words
 
