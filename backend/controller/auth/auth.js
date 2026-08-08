@@ -32,6 +32,8 @@ async function login(req, res, next) {
     if (!existingUser.isVerified) {
       await verifyEmail(existingUser.email, otpGenrate)
        const err = new Error("unAuthorized user")
+       err.email = existingUser.email
+       err.userId = existingUser._id
        err.statusCode = 401
        throw err
     }
@@ -91,7 +93,7 @@ async function signup(req, res, next) {
     const newUser = new User({ ...validatedData, password: hashedPassword })
     await newUser.save()
     await verifyEmail(newUser.email, otpGenrate)
-    res.status(201).json({ message: "user registered successfully", data: newUser._id || "signup success" })
+    res.status(201).json({ message: "user registered successfully", data: newUser._id , email: newUser.email  || "signup success" })
   } catch (err) {
      next(err)
   }
@@ -101,6 +103,7 @@ async function verifyEmailOTP(req, res, next)  {
   try {
     const id = req.params.id
     const { email, otp } = req.body
+    console.log(email, otp)
 
     const otpDoc = await EmailOTP.findOne({ email, otp  });
 

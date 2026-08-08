@@ -47,7 +47,7 @@ It simplifies complex lab data, highlights important points, and gives you insig
 | **Frontend** | React + Material UI (MUI) |
 | **Backend** | Node.js + Express |
 | **Database** | MongoDB Atlas |
-| **AI Model** | Gemini 1.5 Pro / 1.5 Flash |
+| **AI Model** | Gemini 3.5 Pro / 3.5 Flash |
 | **Hosting** | Vercel (frontend) + Render (backend) |
 
 ---

@@ -23,13 +23,13 @@ export async function verifyEmail(userEmail, otp) {
     const mailOptions = {
       from: process.env.NodeMailer_Email,
       to: userEmail,
-      subject: "Micro Finance OTP",
+      subject: "Health Mate Pro OTP",
       html: `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OTP Email - Microfinance</title>
+  <title>OTP Email - HealthMate Pro</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -74,7 +74,7 @@ export async function verifyEmail(userEmail, otp) {
 <body>
   <div class="container">
     <div class="header">
-      <h2>Welcome from Microfinance</h2>
+      <h2>Welcome from HealthMate Pro</h2>
     </div>
 
     <p>Dear Customer,</p>
@@ -87,10 +87,10 @@ export async function verifyEmail(userEmail, otp) {
     <p>This code is valid for only 10 minutes. Please do not share it with anyone.</p>
 
     <p>Thank you,<br>
-    Microfinance Team</p>  
+    HealthMate Pro Team</p>  
 
     <div class="footer">
-      &copy; ${new Date().getFullYear()} Microfinance. All rights reserved.
+      &copy; ${new Date().getFullYear()} HealthMate Pro. All rights reserved.
     </div>
   </div>
 </body>

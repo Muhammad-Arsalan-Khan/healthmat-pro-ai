@@ -45,11 +45,11 @@ const LoginPage = () => {
 
   const onSubmit = async (data) => {
     try {
-      setLoading(true)
-      const res = await axios.post(`${config.baseURL}/login`, data)
+      setLoading(true);
+      const res = await axios.post(`${config.baseURL}/login`, data);
       // console.log(res)
-      const userData = res.data.user
-      localStorage.setItem("user", JSON.stringify(userData))
+      const userData = res.data.user;
+      localStorage.setItem("user", JSON.stringify(userData));
       // console.log(userData.isVerified)
       if (userData.isVerified) {
         setSnackbar({
@@ -65,25 +65,28 @@ const LoginPage = () => {
           }, 1500);
         } else {
           setTimeout(() => {
-            Cookies.set("token", res.data.token)
-            navigate(`/dashboard/${userData.id}`)
+            Cookies.set("token", res.data.token);
+            navigate(`/dashboard/${userData.id}`);
           }, 1000);
         }
         setLoading(false);
       }
     } catch (err) {
-      setLoading(false)
+      setLoading(false);
       if (err.response?.data?.message == "unAuthorized user") {
         console.log(err)
-        const email = err.response?.data?.email
-        localStorage.setItem("user_email", email)
-        setUserId(err.response?.data?.data)
+        const email = err.response?.data?.email;
+        const userId = err.response?.data?.userId;
+        // console.log(email);
+        // console.log(userId);
+        localStorage.setItem("user_email", email);
+        setUserId(userId);
         setSnackbar({
           open: true,
           message: "Please verify your account via OTP try to login again",
           severity: "warning",
-        })
-        setShowOtpModal(true)
+        });
+        setShowOtpModal(true);
       }
       setSnackbar({
         open: true,
@@ -103,7 +106,7 @@ const LoginPage = () => {
         mx: "auto",
         mt: { xs: 3, sm: 5 },
       }}
-      >
+    >
       <Typography variant="h5" color="#4CAF50" gutterBottom>
         Login
       </Typography>
@@ -136,7 +139,12 @@ const LoginPage = () => {
           type="submit"
           variant="contained"
           fullWidth
-          sx={{ mt: 2,bgcolor: "#4CAF50", color: "white", "&:hover": { backgroundColor: "#4ccd51ff" }, }}
+          sx={{
+            mt: 2,
+            bgcolor: "#4CAF50",
+            color: "white",
+            "&:hover": { backgroundColor: "#4ccd51ff" },
+          }}
           disabled={loading}
         >
           Login
@@ -175,4 +183,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage
+export default LoginPage;
